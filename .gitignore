@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Data / caches / outputs
+data_cache/
+data/
+reports/
+*.parquet
+*.csv
+
+# Build / tooling
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/

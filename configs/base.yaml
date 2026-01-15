@@ -1,0 +1,35 @@
+project:
+  name: stock-ranking-ml
+
+data:
+  source: yfinance
+  start: "2015-01-01"
+  end: null
+  universe:
+    tickers: ["AAPL","MSFT","AMZN","NVDA","META","GOOGL","TSLA","JPM","XOM","JNJ"]
+  price_field: "Adj Close"
+  cache_dir: "data_cache"
+
+label:
+  horizon_days: 5
+  transform: "cross_sectional_zscore"
+
+features:
+  representation: "tabular"
+  windows: [1, 5, 20, 60]
+  lookback_days: 60
+
+validation:
+  outer_splits: 5
+  inner_splits: 3
+  split_unit: "date"
+  scheme: "expanding"
+
+metrics:
+  primary: ["ic_spearman", "precision_at_k", "decile_spread"]
+  secondary: ["mse"]
+  precision_k: 20
+
+output:
+  runs_dir: "reports/runs"
+  save_predictions: true
